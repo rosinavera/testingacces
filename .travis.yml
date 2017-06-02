@@ -1,26 +1,9 @@
 
-# Build matrix
-language: node_js
-matrix:
-  include:
+before_script:
+  - npm install -g http-server
+  - npm install -g pa11y
+  - npm install -g pa11y-reporter-ci
 
-    # Run linter once
-    - node_js: '7'
-      env: LINT=true
-
-    # Run tests
-    - node_js: '4'
-    - node_js: '5'
-    - node_js: '6'
-    - node_js: '7'
-
-# Restrict builds on branches
-branches:
-  only:
-    - master
-    - /^\d+\.\d+\.\d+$/
-
-# Build script
-script:
-  - 'if [ $LINT ]; then make lint; fi'
-  - 'if [ ! $LINT ]; then make test; fi'
+script: 
+  - nohup http-server -p 8080 >/dev/null 2>&1 &
+  - pa11y http://opencart.abstracta.us 
