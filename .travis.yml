@@ -6,5 +6,5 @@ before_script:
 
 script: 
   - nohup http-server -p 8080 >/dev/null 2>&1 &
-  - pa11y http://opencart.abstracta.us -s WCAG2AA
+  - pa11y open-cart.azurewebsites.net -s WCAG2AA
   
